@@ -1,4 +1,4 @@
-import type { Occupation } from '../types';
+import type { Occupation, OccupationsResponse } from '../types';
 
 const API_BASE = '/api';
 
@@ -11,7 +11,8 @@ async function request<T>(path: string): Promise<T> {
 }
 
 export async function fetchOccupations(): Promise<Occupation[]> {
-  return request<Occupation[]>('/occupations');
+  const response = await request<OccupationsResponse>('/occupations');
+  return response.data;
 }
 
 export async function fetchRegions(): Promise<string[]> {

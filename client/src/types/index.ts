@@ -8,6 +8,11 @@ export interface Occupation {
   projected_growth_pct: number;
 }
 
+export interface OccupationsResponse {
+  data: Occupation[];
+  count: number;
+}
+
 export interface TrendPoint {
   year: number;
   employment: number;

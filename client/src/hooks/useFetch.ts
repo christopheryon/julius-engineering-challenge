@@ -17,6 +17,9 @@ export function useFetch<T>(fetcher: () => Promise<T>, deps: unknown[] = []): Fe
   useEffect(() => {
     let cancelled = false;
 
+    setLoading(true);
+    setError(null);
+
     fetcher()
       .then((result) => {
         if (!cancelled) {

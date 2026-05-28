@@ -10,7 +10,9 @@ The backend API at `/api/occupations` responds with an object containing a field
 
 While building the sorting and filtering features, I found that the chart does not update when the data passed to it changes. This is because the `useMemo` that defines the data to render did not depend on the `occupations` prop, meaning it was only ever computed once on mount and any changes were ignored. I fixed this by making the useMemo depend on `occupations`.
 
+### Bug 3: State management issue with useFetch hook
 
+The `useFetch` hook did not properly update the loading and error states on subsequent fetches. I noticed this while reading it to properly implement the loading and error states in my trend chart. I confirmed this by both adding an artificial delay to the API route and shutting down the server completely, and observed that the loading state would not show on subsequent trend charts (it would display stale data instead) and errors would not clear when the server came back online without reloading the frontend. I fixed this by properly resetting the loading and error states inside the `useEffect` of `useFetch`. 
 
 ## Feature notes
 

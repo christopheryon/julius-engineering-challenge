@@ -45,13 +45,17 @@ In the scope of a single file, building a sortable header in a helper function m
 
 ## Integration notes
 
-I used an expand-in-place UI pattern for the trend charts. When clicking a row, the occupation name is bolded to show which one was selected and the chart appears underneath. It can be closed by selecting another row, selecting the same row, or clicking the x button in the corner, providing flexibility.
+I used an expand-in-place UI pattern for the trend charts. When clicking a row, the occupation name is bolded to show which one was selected and the chart appears underneath. It can be closed by selecting another row, selecting the same row, or clicking the x button in the corner, providing flexibility. I chose this pattern for two main reasons: to preserve context (the user does not have to adjust to a drastic UI shift, and can see the rest of the UI while looking at a trend chart) and allow for quicker comparisons (the user can quickly switch between rows without dismissing a modal that has taken over the entire screen).
 
 ## Assumptions
 
 Bug 1: I assumed that the `count` field could either be used by a different frontend client or was intended to be used by future functionality of this client. Therefore, it made more sense to adapt the frontend to the backend's behavior.
 
+Sorting: I assumed initially sorting the table by medium wage would be a sane default. With more time, the safest option would likely be to build an option to clear sorting and/or clear all filters, and to show the table unsorted by default.
+
 ## What I'd build next
 
 - Show projected growth in trend charts
-- Add views to compare trend charts
+- Add views to compare trend charts to each other (multiple side by side, or multiple lines on one)
+- Testing: add tests with sample data for sorting and filtering to make it easier to add new filtering options while keeping old behavior consistent
+- Accessibility: test keyboard navigation and screen reader experience to spot flaws in how users of accessibility tools experience the client

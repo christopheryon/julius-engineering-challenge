@@ -1,0 +1,81 @@
+occupation_code,occupation_title,category,region,employment,median_wage,projected_growth_pct
+15-1252,Software Developers,Technology,Northeast,312400,128500,17.0
+15-1252,Software Developers,Technology,South,289100,118200,18.4
+15-1252,Software Developers,Technology,Midwest,178300,108900,15.2
+15-1252,Software Developers,Technology,West,402800,142700,19.1
+15-1212,Information Security Analysts,Technology,Northeast,52100,118100,31.5
+15-1212,Information Security Analysts,Technology,South,48700,108300,33.1
+15-1212,Information Security Analysts,Technology,Midwest,29400,102500,28.7
+15-1212,Information Security Analysts,Technology,West,61200,131400,32.8
+15-2051,Data Scientists,Technology,Northeast,42800,121200,35.2
+15-2051,Data Scientists,Technology,South,38100,108700,36.8
+15-2051,Data Scientists,Technology,Midwest,21300,99800,32.4
+15-2051,Data Scientists,Technology,West,58400,135600,38.1
+29-1141,Registered Nurses,Healthcare,Northeast,621400,89300,5.6
+29-1141,Registered Nurses,Healthcare,South,712800,79100,7.2
+29-1141,Registered Nurses,Healthcare,Midwest,488200,76500,4.9
+29-1141,Registered Nurses,Healthcare,West,498100,124200,6.8
+29-1171,Nurse Practitioners,Healthcare,Northeast,68200,128400,44.5
+29-1171,Nurse Practitioners,Healthcare,South,79100,118700,46.2
+29-1171,Nurse Practitioners,Healthcare,Midwest,51800,114300,42.8
+29-1171,Nurse Practitioners,Healthcare,West,62400,142100,45.1
+29-2061,Licensed Practical Nurses,Healthcare,Northeast,142100,58400,5.1
+29-2061,Licensed Practical Nurses,Healthcare,South,189400,52100,5.8
+29-2061,Licensed Practical Nurses,Healthcare,Midwest,128700,51800,4.3
+29-2061,Licensed Practical Nurses,Healthcare,West,98300,68900,5.5
+31-1131,Nursing Assistants,Healthcare,Northeast,289100,38400,4.2
+31-1131,Nursing Assistants,Healthcare,South,388200,34100,4.8
+31-1131,Nursing Assistants,Healthcare,Midwest,261400,35200,3.7
+31-1131,Nursing Assistants,Healthcare,West,201400,42800,4.5
+25-2021,Elementary School Teachers,Education,Northeast,289400,71200,1.1
+25-2021,Elementary School Teachers,Education,South,412800,58100,2.4
+25-2021,Elementary School Teachers,Education,Midwest,278100,61400,0.8
+25-2021,Elementary School Teachers,Education,West,251800,82400,1.6
+25-1099,Postsecondary Teachers,Education,Northeast,312800,84200,8.1
+25-1099,Postsecondary Teachers,Education,South,289400,72400,8.9
+25-1099,Postsecondary Teachers,Education,Midwest,221700,74800,7.2
+25-1099,Postsecondary Teachers,Education,West,278200,98100,8.4
+13-2011,Accountants and Auditors,Finance,Northeast,312400,89400,4.1
+13-2011,Accountants and Auditors,Finance,South,358100,76200,5.2
+13-2011,Accountants and Auditors,Finance,Midwest,241800,75100,3.8
+13-2011,Accountants and Auditors,Finance,West,278900,92300,4.6
+13-2052,Personal Financial Advisors,Finance,Northeast,98400,121400,12.8
+13-2052,Personal Financial Advisors,Finance,South,89100,108200,14.2
+13-2052,Personal Financial Advisors,Finance,Midwest,61400,102100,11.4
+13-2052,Personal Financial Advisors,Finance,West,84200,138400,13.7
+13-1161,Market Research Analysts,Business,Northeast,178100,82400,12.4
+13-1161,Market Research Analysts,Business,South,184200,72800,13.8
+13-1161,Market Research Analysts,Business,Midwest,121800,71200,11.2
+13-1161,Market Research Analysts,Business,West,158400,94100,13.1
+11-2021,Marketing Managers,Business,Northeast,82400,158200,7.8
+11-2021,Marketing Managers,Business,South,71800,138400,9.1
+11-2021,Marketing Managers,Business,Midwest,52100,128700,6.8
+11-2021,Marketing Managers,Business,West,89200,178400,8.4
+47-2031,Carpenters,Skilled Trades,Northeast,142800,62100,-0.2
+47-2031,Carpenters,Skilled Trades,South,189400,52400,0.8
+47-2031,Carpenters,Skilled Trades,Midwest,128700,58100,-0.4
+47-2031,Carpenters,Skilled Trades,West,158100,72400,0.4
+47-2111,Electricians,Skilled Trades,Northeast,158200,78400,5.4
+47-2111,Electricians,Skilled Trades,South,178400,68100,6.8
+47-2111,Electricians,Skilled Trades,Midwest,121400,72800,4.9
+47-2111,Electricians,Skilled Trades,West,142100,89400,5.7
+47-2152,Plumbers,Skilled Trades,Northeast,98400,72100,2.1
+47-2152,Plumbers,Skilled Trades,South,118400,62400,3.2
+47-2152,Plumbers,Skilled Trades,Midwest,84200,68100,1.8
+47-2152,Plumbers,Skilled Trades,West,92800,82400,2.7
+49-9071,Maintenance and Repair Workers,Skilled Trades,Northeast,289400,48200,3.4
+49-9071,Maintenance and Repair Workers,Skilled Trades,South,358100,42100,4.1
+49-9071,Maintenance and Repair Workers,Skilled Trades,Midwest,241800,44800,2.9
+49-9071,Maintenance and Repair Workers,Skilled Trades,West,221700,52400,3.6
+53-3032,Heavy and Tractor-Trailer Truck Drivers,Transportation,Northeast,358400,58100,3.2
+53-3032,Heavy and Tractor-Trailer Truck Drivers,Transportation,South,512100,52400,4.1
+53-3032,Heavy and Tractor-Trailer Truck Drivers,Transportation,Midwest,398200,54800,2.8
+53-3032,Heavy and Tractor-Trailer Truck Drivers,Transportation,West,289400,62100,3.4
+35-2014,Cooks Restaurant,Food Service,Northeast,289100,38400,15.2
+35-2014,Cooks Restaurant,Food Service,South,412800,32100,16.8
+35-2014,Cooks Restaurant,Food Service,Midwest,261400,34200,13.4
+35-2014,Cooks Restaurant,Food Service,West,261700,42800,14.7
+35-3023,Fast Food Workers,Food Service,Northeast,612800,28100,2.4
+35-3023,Fast Food Workers,Food Service,South,812400,26400,3.1
+35-3023,Fast Food Workers,Food Service,Midwest,512800,27200,1.9
+35-3023,Fast Food Workers,Food Service,West,471200,32100,2.6

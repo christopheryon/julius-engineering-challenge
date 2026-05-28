@@ -4,9 +4,42 @@
 
 ### Bug 1: Occupations API data shape mismatch
 
-The backend API at `/api/occupations` responds with an object containing a field of `Occupation[]` and a field with the number of items contained by the first field. The frontend expected only the content of the first field and crashed after receiving the unexpected format. I added a new type in `types/index.ts` to represent the shape of the API response and changed `fetchOccupations()` in `occupations.ts` to use the new type to first unwrap the data field before returning it. This ensures the issue is fixed everywhere `fetchOccupations()` is used rather than the less maintainable and more intrusive approach of attempting to change this behavior in each individual place.
+The backend API at `/api/occupations` responds with an object containing a field of `Occupation[]` and a field with the number of items contained by the first field. The frontend expected only the content of the first field and crashed after receiving the unexpected format. I added a new type in `types/index.ts` to represent the shape of the API response and changed `fetchOccupations()` in `occupations.ts` to use the new type to first unwrap the data field before returning it. This ensures the issue is fixed everywhere `fetchOccupations()` is used rather than the less maintainable and more intrusive approach of attempting to change this behavior in each individual place. I found this bug by inspecting the files reported in the console errors on the first launch of the application.
+
+### Bug 2: Chart does not update when data is changed
+
+While building the sorting and filtering features, I found that the chart does not update when the data passed to it changes. This is because the `useMemo` that defines the data to render did not depend on the `occupations` prop, meaning it was only ever computed once on mount and any changes were ignored.
+
+
 
 ## Feature notes
+
+### UI/UX
+
+#### Inline column sorting
+
+The column sorting takes place in the header of each sortable column. This removes clutter from the UI and is consistent with many other implementations of column sorting in software the user is likely familiar with.
+
+### Technical
+
+#### Centralized filter management
+
+For a reasonably-sized set of filters, a centralized filter state ensures readability and consistency when updating/recomputing other state (the filtered data) based on changes in the filter state.
+
+#### State management: centralized useMemo
+
+Rather than attempt to communicate the filter instructions to each component, I used a single instance of `useMemo` to define a centralized `filteredOccupations` state that handles both state updates and recomputations (as opposed to combining `useState` and `useEffect`, for example). This ensures that the sorting and filtering of the data propagates to all components simply by passing the processed data directly to them, avoiding invasive and error-prone changes in each component.
+
+#### Additional types
+
+Defining types for the filters means they can be cleanly reused elsewhere, in addition to letting TypeScript provide consistent guidance on where changes need to be made if filters are added, removed, or edited.
+
+Defining string union types for `SortKey` and `SortDirection` is both more readable than simple numeric flags (such as 0 or 1 for `SortDirection`) and reduces future bugs by making it clear which values are accepted by current implementations.
+
+#### Helper function for sortable headers
+
+In the scope of a single file, building a sortable header in a helper function means the code for the table is cleaner and more readable. Changes to sortable headers will automatically propagate to all places where they're used, and if other tables use them in the future, they can more easily be extracted into their own React component.
+
 
 ## Integration notes
 

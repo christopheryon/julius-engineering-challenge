@@ -27,7 +27,7 @@ export function EmploymentByCategoryChart({ occupations }: Props) {
       category,
       employment,
     })).sort((a, b) => b.employment - a.employment);
-  }, []);
+  }, [occupations]);
 
   if (occupations.length === 0) {
     return <div className="empty">No data to display.</div>;

@@ -41,6 +41,46 @@ body {
   font-size: 14px;
 }
 
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 20px 0 24px;
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.filters__control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.filters__control select,
+.filters__control input {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--color-text);
+  background: #fff;
+}
+
+.filters__search {
+  grid-column: span 2;
+}
+
+@media (max-width: 720px) {
+  .filters__search {
+    grid-column: span 1;
+  }
+}
+
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -110,6 +150,24 @@ body {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.table th button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.table th button span.sort-icon {
+  font-size: 13px;
+  color: var(--color-text);
+  opacity: 0.65;
+}
+
+.table th button span.sort-icon.is-active {
+  opacity: 1;
 }
 
 .table tbody tr:hover {

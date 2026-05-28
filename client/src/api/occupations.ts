@@ -1,4 +1,4 @@
-import type { Occupation, OccupationsResponse } from '../types';
+import type { Occupation, OccupationTrend, OccupationsResponse } from '../types';
 
 const API_BASE = '/api';
 
@@ -19,5 +19,8 @@ export async function fetchRegions(): Promise<string[]> {
   return request<string[]>('/regions');
 }
 
-// TODO (Part 3): add a function to fetch the employment trend for a given
-// occupation code. See the server routes for the endpoint and response shape.
+export async function fetchOccupationTrend(occupationCode: string): Promise<OccupationTrend> {
+  return request<OccupationTrend>(
+    `/occupations/${encodeURIComponent(occupationCode)}/trend`,
+  );
+}

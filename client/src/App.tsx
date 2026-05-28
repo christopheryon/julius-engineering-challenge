@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
-import { fetchOccupations, fetchRegions } from './api/occupations';
+import { fetchOccupationTrend, fetchOccupations, fetchRegions } from './api/occupations';
 import { EmploymentByCategoryChart } from './components/EmploymentByCategoryChart';
 import { KpiCards } from './components/KpiCards';
 import { OccupationTable } from './components/OccupationTable';
+import { OccupationTrendChart } from './components/OccupationTrendChart';
 import { useFetch } from './hooks/useFetch';
-import type { FiltersState, Occupation } from './types';
+import type { FiltersState, Occupation, OccupationTrend } from './types';
 
 export default function App() {
   const { data: occupations, loading, error } = useFetch<Occupation[]>(
@@ -19,6 +20,8 @@ export default function App() {
     sortKey: 'median_wage',
     sortDirection: 'desc',
   });
+
+  const [selectedOccupation, setSelectedOccupation] = useState<Occupation | null>(null);
 
   const filteredOccupations = useMemo(() => {
     if (!occupations) {
@@ -47,6 +50,24 @@ export default function App() {
 
     return result;
   }, [occupations, filters]);
+
+  const selectedRowKey = selectedOccupation
+    ? `${selectedOccupation.occupation_code}-${selectedOccupation.region}`
+    : null;
+
+  const {
+    data: trend,
+    loading: trendLoading,
+    error: trendError,
+  } = useFetch<OccupationTrend | null>(
+    () => {
+      if (!selectedOccupation) {
+        return Promise.resolve(null);
+      }
+      return fetchOccupationTrend(selectedOccupation.occupation_code);
+    },
+    [selectedOccupation?.occupation_code],
+  );
 
   return (
     <div className="app">
@@ -117,10 +138,66 @@ export default function App() {
                       : 'desc',
                 }))
               }
+              onRowClick={(occupation) =>
+                setSelectedOccupation((prev) => {
+                  if (!prev) {
+                    return occupation;
+                  }
+                  const prevKey = `${prev.occupation_code}-${prev.region}`;
+                  const nextKey = `${occupation.occupation_code}-${occupation.region}`;
+                  return prevKey === nextKey ? null : occupation;
+                })
+              }
+              expandedRowKey={selectedRowKey}
+              expandedContent={
+                selectedOccupation ? (
+                  <div className="trend-panel">
+                    <div className="trend-panel__header">
+                      <div>
+                        <div className="trend-panel__title">Employment trend</div>
+                        <div className="trend-panel__subtitle">
+                          {selectedOccupation.occupation_title}
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className="trend-panel__close"
+                        onClick={() => setSelectedOccupation(null)}
+                        aria-label="Close trend chart"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          width="16"
+                          height="16"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path
+                            d="M18 6L6 18M6 6l12 12"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    {trendLoading && <div className="loading">Loading trend…</div>}
+                    {trendError && (
+                      <div className="error">
+                        Failed to load trend: {trendError.message}
+                      </div>
+                    )}
+                    {!trendLoading && !trendError && (
+                      <OccupationTrendChart
+                        trend={trend}
+                        occupationTitle={selectedOccupation.occupation_title}
+                      />
+                    )}
+                  </div>
+                ) : null
+              }
             />
           </section>
-
-          {/* TODO (Part 3): when a row is clicked, render the employment trend chart. */}
         </>
       )}
     </div>

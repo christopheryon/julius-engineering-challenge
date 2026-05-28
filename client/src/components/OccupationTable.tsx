@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import type { Occupation, SortDirection, SortKey } from '../types';
 import { formatCurrency, formatNumber, formatPercent } from '../utils/format';
 
@@ -6,8 +7,9 @@ interface Props {
   sortKey: SortKey;
   sortDirection: SortDirection;
   onSortChange: (key: SortKey) => void;
-  // TODO (Part 3): wire up row clicks to open the trend view.
   onRowClick?: (occupation: Occupation) => void;
+  expandedRowKey?: string | null;
+  expandedContent?: React.ReactNode;
 }
 
 export function OccupationTable({
@@ -16,6 +18,8 @@ export function OccupationTable({
   sortDirection,
   onSortChange,
   onRowClick,
+  expandedRowKey,
+  expandedContent,
 }: Props) {
   if (occupations.length === 0) {
     return <div className="empty">No occupations match the current filters.</div>;
@@ -62,20 +66,32 @@ export function OccupationTable({
         </tr>
       </thead>
       <tbody>
-        {occupations.map((o) => (
-          <tr
-            key={`${o.occupation_code}-${o.region}`}
-            onClick={() => onRowClick?.(o)}
-            style={{ cursor: onRowClick ? 'pointer' : 'default' }}
-          >
-            <td>{o.occupation_title}</td>
-            <td>{o.category}</td>
-            <td>{o.region}</td>
-            <td>{formatNumber(o.employment)}</td>
-            <td>{formatCurrency(o.median_wage)}</td>
-            <td>{formatPercent(o.projected_growth_pct)}</td>
-          </tr>
-        ))}
+        {occupations.map((o) => {
+          const rowKey = `${o.occupation_code}-${o.region}`;
+          const isExpanded = rowKey === expandedRowKey;
+
+          return (
+            <Fragment key={rowKey}>
+              <tr
+                className={isExpanded ? 'table__row is-expanded' : 'table__row'}
+                onClick={() => onRowClick?.(o)}
+                style={{ cursor: onRowClick ? 'pointer' : 'default' }}
+              >
+                <td>{o.occupation_title}</td>
+                <td>{o.category}</td>
+                <td>{o.region}</td>
+                <td>{formatNumber(o.employment)}</td>
+                <td>{formatCurrency(o.median_wage)}</td>
+                <td>{formatPercent(o.projected_growth_pct)}</td>
+              </tr>
+              {isExpanded && expandedContent && (
+                <tr className="table__expanded">
+                  <td colSpan={6}>{expandedContent}</td>
+                </tr>
+              )}
+            </Fragment>
+          );
+        })}
       </tbody>
     </table>
   );

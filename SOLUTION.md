@@ -8,7 +8,7 @@ The backend API at `/api/occupations` responds with an object containing a field
 
 ### Bug 2: Chart does not update when data is changed
 
-While building the sorting and filtering features, I found that the chart does not update when the data passed to it changes. This is because the `useMemo` that defines the data to render did not depend on the `occupations` prop, meaning it was only ever computed once on mount and any changes were ignored.
+While building the sorting and filtering features, I found that the chart does not update when the data passed to it changes. This is because the `useMemo` that defines the data to render did not depend on the `occupations` prop, meaning it was only ever computed once on mount and any changes were ignored. I fixed this by making the useMemo depend on `occupations`.
 
 
 
@@ -43,9 +43,13 @@ In the scope of a single file, building a sortable header in a helper function m
 
 ## Integration notes
 
+I used an expand-in-place UI pattern for the trend charts. When clicking a row, the occupation name is bolded to show which one was selected and the chart appears underneath. It can be closed by selecting another row, selecting the same row, or clicking the x button in the corner, providing flexibility.
+
 ## Assumptions
 
 Bug 1: I assumed that the `count` field could either be used by a different frontend client or was intended to be used by future functionality of this client. Therefore, it made more sense to adapt the frontend to the backend's behavior.
 
 ## What I'd build next
 
+- Show projected growth in trend charts
+- Add views to compare trend charts
